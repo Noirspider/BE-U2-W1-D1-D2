@@ -26,7 +26,7 @@ namespace BE_U2_W1_D1_D2.Controllers
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                       Dipendenti d = new Dipendenti();
+                    Dipendenti d = new Dipendenti();
                     d.IDDipendente = Convert.ToInt32(reader["IDDipendente"]);
                     d.Nome = reader["Nome"].ToString();
                     d.Cognome = reader["Cognome"].ToString();
@@ -38,7 +38,7 @@ namespace BE_U2_W1_D1_D2.Controllers
                     dipendente.Add(d);
                 }
             }
-            
+
             catch (Exception ex)
             {
                 throw ex;
@@ -47,7 +47,42 @@ namespace BE_U2_W1_D1_D2.Controllers
             {
                 conn.Close();
             }
+            return View(dipendente);
+        }
+
+        public ActionResult Create()
+        {
             return View();
         }
+        [HttpPost]
+        public ActionResult Create(Dipendenti d)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string query = "INSERT INTO Dipendenti (Nome, Cognome, Indirizzo, CodiceFiscale, Coniugato, NFigliACarico, Mansione) VALUES (@Nome, @Cognome, @Indirizzo, @CodiceFiscale, @Coniugato, @NFigliACarico, @Mansione)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Nome", d.Nome);
+                cmd.Parameters.AddWithValue("@Cognome", d.Cognome);
+                cmd.Parameters.AddWithValue("@Indirizzo", d.Indirizzo);
+                cmd.Parameters.AddWithValue("@CodiceFiscale", d.CodiceFiscale);
+                cmd.Parameters.AddWithValue("@Coniugato", d.Coniugato);
+                cmd.Parameters.AddWithValue("@NFigliACarico", d.NFigliACarico);
+                cmd.Parameters.AddWithValue("@Mansione", d.Mansione);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+               Response.Write("ERROR: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }
