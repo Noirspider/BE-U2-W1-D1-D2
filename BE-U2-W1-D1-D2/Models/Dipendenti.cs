@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Dipendenti.Models
+namespace BE_U2_W1_D1_D2.Models
 {
     public class Dipendenti
     {

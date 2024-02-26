@@ -4,7 +4,10 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Dipendenti.Models;
+using BE_U2_W1_D1_D2.Models;
+using System.Data.SqlClient;
+
+
 namespace BE_U2_W1_D1_D2.Controllers
 {
     public class DipendentiController : Controller
@@ -14,7 +17,7 @@ namespace BE_U2_W1_D1_D2.Controllers
         {
             List<Dipendenti> dipendente = new List<Dipendenti>();
             string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
-            SqlCpnnection conn = new SqlConnection(connectionString);
+            SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
