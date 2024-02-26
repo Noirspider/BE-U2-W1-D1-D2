@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace BE_U2_W1_D1_D2.Models
+namespace Dipendenti.Models
 {
-    public class Employee
+    public class Dipendenti
     {
-        public int Id { get; set; }
+        public int IDDipendente { get; set; }
 
         [Required(ErrorMessage = "Il campo Nome è obbligatorio.")]
         public string Nome { get; set; }
@@ -25,7 +25,7 @@ namespace BE_U2_W1_D1_D2.Models
         public bool Coniugato { get; set; }
 
         [Display(Name = "Numero Figli a Carico")]
-        public int NumeroFigli { get; set; }
+        public int NFigliACarico { get; set; }
 
         public string Mansione { get; set; }
     }
