@@ -16,7 +16,7 @@ namespace BE_U2_W1_D1_D2.Controllers
         public ActionResult Index()
         {
             List<Dipendenti> dipendente = new List<Dipendenti>();
-            string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DB1"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
@@ -27,7 +27,6 @@ namespace BE_U2_W1_D1_D2.Controllers
                 while (reader.Read())
                 {
                     Dipendenti d = new Dipendenti();
-                    d.IDDipendente = Convert.ToInt32(reader["IDDipendente"]);
                     d.Nome = reader["Nome"].ToString();
                     d.Cognome = reader["Cognome"].ToString();
                     d.Indirizzo = reader["Indirizzo"].ToString();
@@ -57,7 +56,7 @@ namespace BE_U2_W1_D1_D2.Controllers
         [HttpPost]
         public ActionResult Create(Dipendenti d)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DB1"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
@@ -75,7 +74,7 @@ namespace BE_U2_W1_D1_D2.Controllers
             }
             catch (Exception ex)
             {
-               Response.Write("ERROR: " + ex.Message);
+                Response.Write("ERROR: " + ex.Message);
             }
             finally
             {

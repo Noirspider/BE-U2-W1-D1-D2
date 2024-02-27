@@ -14,7 +14,7 @@ namespace BE_U2_W1_D1_D2.Controllers
         // GET: Pagamenti
         public ActionResult Index()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DB1"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
             List<Pagamenti> pagamenti = new List<Pagamenti>();
             try
@@ -52,7 +52,7 @@ namespace BE_U2_W1_D1_D2.Controllers
         [HttpPost]
         public ActionResult Create(Pagamenti p)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["JurassicEdil"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DB1"].ConnectionString;
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
